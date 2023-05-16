@@ -1,7 +1,7 @@
 # linuxtips-ansible
 ![ansible_k8s](https://miro.medium.com/max/570/0*3vW4ow1OBpXwn_KV.jpg)
 
-Projeto para automação do provisionamento e deploy de um cluster Kubernetes com Helm na AWS utilizando Ansible e AWX.
+Projeto para automação do provisionamento e deploy de um cluster Kubernetes na AWS utilizando Ansible e AWX.
 
 
 ## Configurando o ambiente antes de rodar os playbooks
@@ -41,10 +41,7 @@ Projeto para automação do provisionamento e deploy de um cluster Kubernetes co
 ## Executando os playbooks
 1. Acesse a pasta *provisioning*, e crie as instâncias EC2: ```ansible-playbook -i hosts main.yml```
 2. Acesse a pasta *install_k8s*, e instale o docker e k8s: ```ansible-playbook -i hosts main.yml```
-3. Acesse a pasta *deploy_app_v1*, e instale o docker e k8s: ```ansible-playbook -i hosts main.yml```
-4. Pegue o IP Público de uma das 3 instâncias EC2 criadas e acesse os endereços: IP_DO_SERVER:32222, IP_DO_SERVER:32111 e IP_DO_SERVER:32111/metrics
-5. Acesse a pasta *deploy_app_v2*, e instale o docker e k8s: ```ansible-playbook -i hosts main.yml```
-6. Pegue o IP Público de uma das 3 instâncias EC2 criadas e acesse os endereços: IP_DO_SERVER:32222, IP_DO_SERVER:32111 e IP_DO_SERVER:32111/metrics
+
 
 
 ## Fases do projeto
@@ -60,8 +57,6 @@ Projeto para automação do provisionamento e deploy de um cluster Kubernetes co
     - Instalação do docker, kubeadm, kubelet e kubeadm nas 3 instâncias EC2 recém criadas
     - Criação do cluster
     - Associação dos workers ao nó master
-    - Instalação do Helm
-    - Deploy do Prometheus Operator
     ```
 
 
@@ -80,5 +75,3 @@ Projeto para automação do provisionamento e deploy de um cluster Kubernetes co
     ```
 
 - As instâncias EC2 do tipo t3.medium não fazem parte do "plano gratuito de testes"(free tier) da AWS, portanto não se esqueça de dar um `terminate` nas instâncias e remover o Security Group após terminar os testes neste projeto, caso contrário será cobrado pelo tempo utilizado, cerca de 0.0464 por hora na região da Virgínia.
-
-- Queira ou não, você será cobrado pelo tempo utilizado das instâncias, mas é um valor ínfimo. Durante a implementação deste projeto, pelo meu dashboard de billing, foram computadas 14.307 horas, o que me custo $0.66, pelo menos até hoje: 19/10/2020 às 13:12
